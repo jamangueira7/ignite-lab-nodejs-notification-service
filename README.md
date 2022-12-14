@@ -1,73 +1,109 @@
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-rodar">Como rodar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-rotas">Rotas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;
+  </p>
+
+<br>
+
+
+## Ignite Lab NodeJS - Notification Service
+
+## 🚀 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [NodeJS](https://nodejs.org/en/) - 18.12.1
+- [Yarn](https://yarnpkg.com/) - 0.32+git
+- [Npm](https://www.npmjs.com/) - 8.19.2
+
+## 💻 Projeto
+
+API 
+
+
+Resolulção do teste.
+<p align="center">
+  <img alt="resolucao" src=".github/teste.PNG" width="100%">
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Como Rodar
 
-## Description
+- Clone o projeto.
+- Entre na pasta do projeto e rode npm install (pode usar yarn install de acordo com a sua configuração).
+- npx prisma migrate dev
+- npx prisma studio (abre uma pagina para ver o banco de dados)
+- npm run start:dev para rodar o projeto (localhost:3000).
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 👩🏿‍💻 Rotas
 
-## Installation
+- **`POST /orders`**: Nessa rota você deve receber no corpo da requisição o customer_id e um array de products, contendo o id e a quantity que você deseja adicionar a um novo pedido. Aqui você deve cadastrar na tabela orders um novo pedido, que estará relacionado ao customer_id informado, created_at e updated_at . Já na tabela orders_products, você deve armazenar o product_id, order_id, price e quantity, created_at e updated_at.
 
-```bash
-$ npm install
+Enviar:
+```
+{
+    "costumer_id": "5ea2492c-c93f-4d48-93f1-1e871cee3149",
+    "products": [
+        {
+            "id": "9cc91df5-cf30-47e9-894f-93e8712d820c",
+            "quantity": 1
+        },
+        {
+            "id": "e0096c7f-f66d-4786-a738-1611065ad169",
+            "quantity": 5
+        }
+    ]
+}
+```
+Retorna:
+```
+{
+    "customer": {
+        "id": "5ea2492c-c93f-4d48-93f1-1e871cee3149",
+        "name": "João Mangueira",
+        "email": "joao1@joao.com",
+        "created_at": "2020-12-09T04:34:05.752Z",
+        "updated_at": "2020-12-09T04:34:05.752Z"
+    },
+    "order_products": [
+        {
+            "product_id": "9cc91df5-cf30-47e9-894f-93e8712d820c",
+            "price": "39.98",
+            "quantity": 1,
+            "order_id": "62902eaa-e908-4e11-9fcc-89b575d0082c",
+            "id": "64b21779-69a4-4ae0-8684-696b1d0588d9",
+            "created_at": "2020-12-09T04:36:19.718Z",
+            "updated_at": "2020-12-09T04:36:19.718Z"
+        },
+        {
+            "product_id": "e0096c7f-f66d-4786-a738-1611065ad169",
+            "price": "39.98",
+            "quantity": 5,
+            "order_id": "62902eaa-e908-4e11-9fcc-89b575d0082c",
+            "id": "08f40368-cae8-48f3-9a06-962f66c448c7",
+            "created_at": "2020-12-09T04:36:19.718Z",
+            "updated_at": "2020-12-09T04:36:19.718Z"
+        }
+    ],
+    "id": "62902eaa-e908-4e11-9fcc-89b575d0082c",
+    "created_at": "2020-12-09T04:36:19.718Z",
+    "updated_at": "2020-12-09T04:36:19.718Z"
+}
 ```
 
-## Running the app
+## 🤔 Como contribuir
 
-```bash
-# development
-$ npm run start
+- Faça um fork desse repositório;
+- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
+- Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
+- Faça push para a sua branch: `git push origin minha-feature`.
 
-# watch mode
-$ npm run start:dev
+Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
 
-# production mode
-$ npm run start:prod
-```
+## 📝 Licença
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Esse projeto está sob a licença MIT.
