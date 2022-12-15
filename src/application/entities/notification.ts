@@ -1,5 +1,5 @@
 import { Content } from './content';
-import { Replace } from '../../helpers/Replace';
+import { Replace } from '@helpers/Replace';
 import { randomUUID } from 'node:crypto';
 
 export interface NotificationProps {
@@ -12,53 +12,53 @@ export interface NotificationProps {
 
 export class Notification {
   private _id: string;
-  private _props: NotificationProps;
+  private props: NotificationProps;
 
   constructor(props: Replace<NotificationProps, { createdAt?: Date }>) {
     this._id = randomUUID();
-    this._props = {
+    this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
     };
   }
 
-  public get id() {
+  public get id(): string {
     return this._id;
   }
 
   public set content(content: Content) {
-    this._props.content = content;
+    this.props.content = content;
   }
 
   public get content(): Content {
-    return this._props.content;
+    return this.props.content;
   }
 
   public set category(category: string) {
-    this._props.category = category;
+    this.props.category = category;
   }
 
   public get category(): string {
-    return this._props.category;
+    return this.props.category;
   }
 
   public set recipientId(recipientId: string) {
-    this._props.recipientId = recipientId;
+    this.props.recipientId = recipientId;
   }
 
   public get recipientId(): string {
-    return this._props.recipientId;
+    return this.props.recipientId;
   }
 
   public set readAt(readAt: Date | null | undefined) {
-    this._props.readAt = readAt;
+    this.props.readAt = readAt;
   }
 
   public get readAt(): Date | null | undefined {
-    return this._props.readAt;
+    return this.props.readAt;
   }
 
   public get createdAt(): Date {
-    return this._props.createdAt;
+    return this.props.createdAt;
   }
 }
