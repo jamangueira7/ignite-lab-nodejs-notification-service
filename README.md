@@ -41,57 +41,56 @@ Resolulção do teste.
 
 ## 👩🏿‍💻 Rotas
 
-- **`POST /orders`**: Nessa rota você deve receber no corpo da requisição o customer_id e um array de products, contendo o id e a quantity que você deseja adicionar a um novo pedido. Aqui você deve cadastrar na tabela orders um novo pedido, que estará relacionado ao customer_id informado, created_at e updated_at . Já na tabela orders_products, você deve armazenar o product_id, order_id, price e quantity, created_at e updated_at.
+- **`POST /notifications`**: Roda de criação de notificações
 
 Enviar:
 ```
 {
-    "costumer_id": "5ea2492c-c93f-4d48-93f1-1e871cee3149",
-    "products": [
-        {
-            "id": "9cc91df5-cf30-47e9-894f-93e8712d820c",
-            "quantity": 1
-        },
-        {
-            "id": "e0096c7f-f66d-4786-a738-1611065ad169",
-            "quantity": 5
-        }
-    ]
+    "content":  "test",
+    "category": "test",
+    "recipientId": "c1d4fe30-229a-4bb0-8f44-d4d0e5df9246"
 }
 ```
 Retorna:
 ```
 {
-    "customer": {
-        "id": "5ea2492c-c93f-4d48-93f1-1e871cee3149",
-        "name": "João Mangueira",
-        "email": "joao1@joao.com",
-        "created_at": "2020-12-09T04:34:05.752Z",
-        "updated_at": "2020-12-09T04:34:05.752Z"
-    },
-    "order_products": [
+    "notification": {
+        "id": "f40b9fcb-d6b0-4988-913e-ff8ffaa70e0b",
+        "category": "test",
+        "content": "test",
+        "recipientId": "c1d4fe30-229a-4bb0-8f44-d4d0e5df9246"
+    }
+}
+```
+
+- **`PATCH /notifications/:id/cancel`**: Roda de cancelar notificações
+
+- **`PATCH /notifications/:id/read`**: Roda de marcar uma notificação como lida
+
+- **`PATCH /notifications/:id/unread`**: Roda de marcar uma notificação como não lida
+
+- **`GET /notifications/count/from/:recipientId`**: Roda de contar quantas notificações de um mesmo usaurio teve.
+
+  Retorna:
+```
+{
+    "count": 1
+}
+```
+
+- **`GET /notifications/from/:recipientId`**: Roda de mostras as notificações de um mesmo usaurio teve.
+
+  Retorna:
+```
+{
+    "notifications": [
         {
-            "product_id": "9cc91df5-cf30-47e9-894f-93e8712d820c",
-            "price": "39.98",
-            "quantity": 1,
-            "order_id": "62902eaa-e908-4e11-9fcc-89b575d0082c",
-            "id": "64b21779-69a4-4ae0-8684-696b1d0588d9",
-            "created_at": "2020-12-09T04:36:19.718Z",
-            "updated_at": "2020-12-09T04:36:19.718Z"
-        },
-        {
-            "product_id": "e0096c7f-f66d-4786-a738-1611065ad169",
-            "price": "39.98",
-            "quantity": 5,
-            "order_id": "62902eaa-e908-4e11-9fcc-89b575d0082c",
-            "id": "08f40368-cae8-48f3-9a06-962f66c448c7",
-            "created_at": "2020-12-09T04:36:19.718Z",
-            "updated_at": "2020-12-09T04:36:19.718Z"
+            "id": "f40b9fcb-d6b0-4988-913e-ff8ffaa70e0b",
+            "category": "test",
+            "content": "test",
+            "recipientId": "c1d4fe30-229a-4bb0-8f44-d4d0e5df9246"
         }
-    ],
-    "id": "62902eaa-e908-4e11-9fcc-89b575d0082c",
-    "created_at": "2020-12-09T04:36:19.718Z",
-    "updated_at": "2020-12-09T04:36:19.718Z"
+    ]
 }
 ```
 
