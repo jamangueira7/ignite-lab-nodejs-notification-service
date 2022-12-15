@@ -22,12 +22,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-API 
+API para envio, cancelamento de notificações.
 
 
 Resolulção do teste.
 <p align="center">
-  <img alt="resolucao" src=".github/teste.PNG" width="100%">
+  <img alt="resolucao" src=".github/tests.png" width="100%">
 </p>
 
 
